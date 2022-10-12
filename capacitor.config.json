@@ -1,0 +1,6 @@
+{
+  "appId": "com.siliente.voiceRecorder",
+  "appName": "Voice Recorder",
+  "webDir": "dist",
+  "bundledWebRuntime": false
+}
