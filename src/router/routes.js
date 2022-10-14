@@ -4,10 +4,17 @@ export default [
     path: "/",
     name: "home",
     component: HomeView,
-  },
-  {
-    path: "/about",
-    name: "about",
-    component: () => import("../views/AboutView.vue"),
+    children: [
+      {
+        path: "/records",
+        name: "records",
+        component: () => import("../views/SettingsView.vue"),
+      },
+      {
+        path: "/settings",
+        name: "settings",
+        component: () => import("../views/SettingsView.vue"),
+      },
+    ],
   },
 ];

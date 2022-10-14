@@ -4,10 +4,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        t1: "#000000", //siyah
+        bg: "#000000", //siyah
+        text: "#f44336",
         t2: "#FF0080", //pembe
         t3: "#f44336", //Turuncu
-        t4: "#2196f3", //Mavi,
+        t4: "wheat", //wheat,
       },
     },
   },

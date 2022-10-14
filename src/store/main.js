@@ -2,11 +2,14 @@ import { defineStore } from "pinia";
 
 export const useMainStore = defineStore("main", {
   state: () => ({
-    value: "",
+    isActive: false,
   }),
   actions: {
-    setValue(value) {
-      this.value = value;
+    setActive() {
+      this.isActive = true;
+    },
+    setDeactive() {
+      this.isActive = false;
     },
   },
   getters: {

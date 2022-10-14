@@ -1,6 +1,5 @@
 import { VoiceRecorder } from "capacitor-voice-recorder";
 import { r } from "./debugger";
-export const voiceRecorder = VoiceRecorder;
 
 export const requestAudioRecordingPermission = function () {
   return VoiceRecorder.requestAudioRecordingPermission().then((result) =>
@@ -9,7 +8,7 @@ export const requestAudioRecordingPermission = function () {
 };
 
 export const hasAudioRecordingPermission = function () {
-  return VoiceRecorder.hasAudioRecordingPermission.then((result) =>
+  return VoiceRecorder.hasAudioRecordingPermission().then((result) =>
     r(["hasAudioRecordingPermission", result], result.value)
   );
 };
@@ -22,11 +21,13 @@ export const startRecording = function () {
 };
 
 export const stopRecording = function () {
-  return VoiceRecorder.stopRecording()
-    .then((result) => r(["stopRecording", result], result.value))
-    // {"value": { recordDataBase64: string, msDuration: number, mimeType: string }},
-    .catch((error) => r(["stopRecording", error], false));
-    // "RECORDING_HAS_NOT_STARTED" or "FAILED_TO_FETCH_RECORDING"
+  return (
+    VoiceRecorder.stopRecording()
+      .then((result) => r(["stopRecording", result], result.value))
+      // {"value": { recordDataBase64: string, msDuration: number, mimeType: string }},
+      .catch((error) => r(["stopRecording", error], false))
+  );
+  // "RECORDING_HAS_NOT_STARTED" or "FAILED_TO_FETCH_RECORDING"
 };
 
 export const pauseRecording = function () {
