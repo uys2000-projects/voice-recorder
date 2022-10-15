@@ -1,5 +1,5 @@
 <template>
-  <div @click="()=>''"
+  <div @click="clickEvent"
     class="t h-[15vw] w-[15vw] m-auto flex flex-col justify-center items-center align-middle rounded-full ring bg-t4 border-t4 ring-t2 border-spacing-6 overflow-hidden"
     :class="{'w-0':!isActive,'h-0':!isActive, 'opacity-0':!isActive}">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="fill-t2 w-1/2 h-1/2">
@@ -11,15 +11,47 @@
 </template>
 <script>
 import { useRecordStore } from '@/store/record'
+import { checkPermissions, mkdir, requestPermissions, writeFile } from "@/services/fileSystem"
 export default {
   data() {
     return {
       recordStore: useRecordStore(),
     }
+  }, methods: {
+    getFileName: function () {
+      const a = new Date()
+      return `Record ${a.getFullYear()}-${a.getMonth()}-${a.getDate()} ${a.getHours()}-${a.getMinutes()}-${a.getSeconds()}`
+    },
+    getExt: function (mimeType) {
+      return mimeType.split("/")[1].split(";")[0]
+    },
+    writeFile: function () {
+      const [mimeType, base64Sound] = this.recordStore.getRecordData
+      writeFile("/sdcard/VoiceRecorder", this.getFileName(), this.getExt(mimeType), base64Sound).catch(err => {
+        console.log(err)
+        mkdir("/sdcard/VoiceRecorder").then(() => writeFile("Records", this.getFileName(), this.getExt(mimeType), base64Sound).catch(err => {
+          console.log(err)
+        }))
+      })
+
+    },
+    clickEvent: function () {
+      checkPermissions().then(res => {
+        if (res == "granted") this.writeFile()
+        else {
+          requestPermissions().then(res => {
+            if (res == "granted") this.writeFile()
+            else this.clickEvent()
+          })
+        }
+
+      })
+    }
   }, computed: {
     isActive: function () {
       return this.recordStore.record != null
     }
+  }, mounted() {
   }
 }
 </script>

@@ -1007,6 +1007,11 @@
   dependencies:
     tslib "^2.1.0"
 
+"@capacitor/filesystem@^4.1.2":
+  version "4.1.2"
+  resolved "https://registry.yarnpkg.com/@capacitor/filesystem/-/filesystem-4.1.2.tgz#f3cc63204aa241b25640e6b2dbc3c5d04a2abef3"
+  integrity sha512-akQTgNZBIRE5mN8IPagd4TUk9vx8c2xTllX8yBRzf4BhHHkQPzAnEVikmX+qB/114DvRMh3l2s8mtpXiWOg9NQ==
+
 "@eslint/eslintrc@^0.4.3":
   version "0.4.3"
   resolved "https://registry.npmmirror.com/@eslint/eslintrc/-/eslintrc-0.4.3.tgz#9e42981ef035beb3dd49add17acb96e8ff6f394c"

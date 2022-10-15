@@ -7,19 +7,20 @@ export const useRecordStore = defineStore("record", {
     setRecord(record) {
       this.record = record;
     },
-    getRecordFile(filename) {
+    getRecordFile() {
       return fetch(
         `data:${this.record.mimeType};base64,${this.record.recordDataBase64}`
-      )
-        .then(function (res) {
-          return res.arrayBuffer();
-        })
-        .then(function (buf) {
-          return new File([buf], filename, { type: this.record.mimeType });
-        });
+      ).then(function (res) {
+        return res.arrayBuffer();
+      });
     },
   },
   getters: {
     getValue: (state) => state.value,
+    getRecordData: (state) => [
+      state.record.mimeType,
+      state.record.recordDataBase64,
+    ],
+    getRecordType: (state) => state.record.mimeType,
   },
 });

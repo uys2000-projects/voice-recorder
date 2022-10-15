@@ -2,9 +2,7 @@
   <!--Main Page-->
   <div class="w-scree h-screen text-center flex flex-col">
     <div class="flex-grow">
-      <div class="relative flex">
-        <div></div>
-      </div>
+      <upper-part />
     </div>
     <div class="flex-grow">
       <middle-part />
@@ -16,15 +14,20 @@
 </template>
 
 <script>
-import middlePart from "@/components/HomeView/middlePart.vue"
-import bottomPart from "@/components/HomeView/bottomPart.vue"
+import MiddlePart from "@/components/HomeView/middlePart.vue"
+import BottomPart from "@/components/HomeView/bottomPart.vue"
+import UpperPart from "../components/HomeView/upperPart.vue"
+
 import { useTimerStore } from "@/store/timer"
 import { useMainStore } from '@/store/main'
 import { useRecordStore } from '@/store/record'
+
 import { hasAudioRecordingPermission, requestAudioRecordingPermission, startRecording, stopRecording } from "@/services/recorder"
 export default {
   components: {
-    middlePart, bottomPart
+    MiddlePart,
+    BottomPart,
+    UpperPart
   },
   data() {
     return {

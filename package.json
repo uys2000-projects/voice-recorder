@@ -11,6 +11,7 @@
     "@capacitor/android": "^4.3.0",
     "@capacitor/cli": "^4.3.0",
     "@capacitor/core": "^4.3.0",
+    "@capacitor/filesystem": "^4.1.2",
     "capacitor-voice-recorder": "^4.0.0",
     "core-js": "^3.8.3",
     "pinia": "^2.0.23",
