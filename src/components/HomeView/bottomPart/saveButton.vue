@@ -11,11 +11,13 @@
 </template>
 <script>
 import { useRecordStore } from '@/store/record'
-import { checkPermissions, mkdir, requestPermissions, writeFile } from "@/services/fileSystem"
+import { checkPermissions, requestPermissions, writeFile } from "@/services/fileSystem"
+import { useTimerStore } from '@/store/timer'
 export default {
   data() {
     return {
       recordStore: useRecordStore(),
+      timerStore: useTimerStore()
     }
   }, methods: {
     getFileName: function () {
@@ -26,14 +28,18 @@ export default {
       return mimeType.split("/")[1].split(";")[0]
     },
     writeFile: function () {
+      const location = `Records`
       const [mimeType, base64Sound] = this.recordStore.getRecordData
-      writeFile("/sdcard/VoiceRecorder", this.getFileName(), this.getExt(mimeType), base64Sound).catch(err => {
-        console.log(err)
-        mkdir("/sdcard/VoiceRecorder").then(() => writeFile("Records", this.getFileName(), this.getExt(mimeType), base64Sound).catch(err => {
-          console.log(err)
-        }))
-      })
+      base64Sound
+      writeFile(location, this.getFileName(), this.getExt(mimeType), base64Sound)
+        .then(res => this.saved(res))
+        .catch(err => console.log(err))
 
+    },
+    saved: function (res) {
+      console.log(res)
+      this.timerStore.clearTimer()
+      this.recordStore.record = null
     },
     clickEvent: function () {
       checkPermissions().then(res => {

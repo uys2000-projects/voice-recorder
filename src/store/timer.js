@@ -8,6 +8,14 @@ export const useTimerStore = defineStore("timer", {
     timer: null,
   }),
   actions: {
+    getTimer() {
+      return [this.hr, this.mn, this.sn];
+    },
+    setTimer(times) {
+      this.hr = times[0];
+      this.mn = times[1];
+      this.sn = times[2];
+    },
     timerEvent() {
       this.sn++;
       if (this.sn == 60) {
@@ -33,7 +41,9 @@ export const useTimerStore = defineStore("timer", {
   },
   getters: {
     getTimeStr: (state) =>
-      `${state.hr < 10 ? "0" + state.hr : state.hr}:${state.mn < 10 ? "0" + state.mn : state.mn}:${state.sn < 10 ? "0" + state.sn : state.sn}`,
+      `${state.hr < 10 ? "0" + state.hr : state.hr}:${
+        state.mn < 10 ? "0" + state.mn : state.mn
+      }:${state.sn < 10 ? "0" + state.sn : state.sn}`,
     isOdd: (state) => state,
   },
 });

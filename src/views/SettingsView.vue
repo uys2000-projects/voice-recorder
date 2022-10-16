@@ -1,5 +1,5 @@
 <template>
   <div class="">
-    <h1>About View</h1>
+    <h1>Settings View</h1>
   </div>
 </template>

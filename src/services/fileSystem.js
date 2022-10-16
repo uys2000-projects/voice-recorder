@@ -1,42 +1,53 @@
-import { Filesystem, Encoding } from "@capacitor/filesystem";
+import { Capacitor } from "@capacitor/core";
 import { r } from "./debugger";
+
+import { Directory, Filesystem as MainFilesystem } from "@capacitor/filesystem";
+import { Filesystem as ElectronFilesystem } from "@capacitor-community/filesystem";
+
+let Filesystem = MainFilesystem;
+if (Capacitor.getPlatform() === "android") {
+  Filesystem = ElectronFilesystem;
+}
 
 export const checkPermissions = function () {
   return Filesystem.checkPermissions().then((result) =>
-    r(["readFile", result], result.publicStorage)
+    r(["checkPermissions", result], result.publicStorage)
   );
 };
 export const requestPermissions = function () {
   return Filesystem.requestPermissions().then((result) =>
-    r(["readFile", result], result.publicStorage)
+    r(["requestPermissions", result], result.publicStorage)
   );
 };
-export const readdir = function () {
-  return Filesystem.readdir().then((result) =>
-    r(["readFile", result], result.files)
-  );
+export const readdir = function (path) {
+  return Filesystem.readdir({
+    path: `${path}/`,
+    directory: Directory.External,
+  }).then((result) => r(["readFile", result], result.files));
 };
-export const mkdir = function(path){
+export const mkdir = function (path) {
   return Filesystem.mkdir({
     path: `${path}/`,
-    encoding: Encoding.UTF8,
-  })
-}
+    directory: Directory.External,
+  });
+};
 export const readFile = function (path, filename, ext) {
   return Filesystem.readFile({
     path: `${path}/${filename}.${ext}`,
-    encoding: Encoding.UTF8,
+    directory: Directory.External,
   }).then((result) => r(["readFile", result], result.data));
 };
 export const writeFile = function (path, filename, ext, data) {
   return Filesystem.writeFile({
     path: `${path}/${filename}.${ext}`,
     data: data,
-    encoding: Encoding.UTF8,
+    directory: Directory.External,
+    recursive: true,
   }).then((result) => r(["writeFile", result], result.uri));
 };
 export const deleteFile = function (path, filename, ext) {
   return Filesystem.deleteFile({
     path: `${path}/${filename}.${ext}`,
+    directory: Directory.External,
   });
 };

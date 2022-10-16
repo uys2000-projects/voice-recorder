@@ -1,0 +1,67 @@
+<template>
+  <TransitionGroup :name="mainStore.getDirection" tag="div">
+    <div class="page" v-if="page=='records'" key="records">
+      <records-view />
+    </div>
+    <div class="page" v-if="page=='home'" key="home">
+      <home-view />
+    </div>
+    <div class="page" v-if="page=='settings'" key="settings">
+      <settings-view />
+    </div>
+  </TransitionGroup>
+</template>
+<script>
+import HomeView from "@/views/HomeView.vue"
+import SettingsView from "@/views/SettingsView.vue"
+import RecordsView from "@/views/RecordsView.vue"
+import { useMainStore } from '@/store/main'
+export default {
+  components: {
+    HomeView,
+    SettingsView,
+    RecordsView
+  },
+  data() {
+    return {
+      mainStore: useMainStore(),
+    }
+  },
+  computed: {
+    page: function () {
+      if (["home", "settings", "records"].find(val => val == this.$route.params.page)) return this.$route.params.page
+      else return "home"
+    },
+  }
+}
+</script>
+<style>
+.page {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0px;
+}
+
+.left-enter-active,
+.left-leave-active,
+.right-enter-active,
+.right-leave-active {
+  transition: all 2s ease;
+}
+
+.left-enter-from,
+.right-leave-to {
+  transform: translateX(-100vw);
+}
+
+.left-leave-to,
+.right-enter-from {
+  transform: translateX(100vw);
+}
+
+.left-leave-active,
+.right-leave-active {
+  position: absolute;
+}
+</style>
