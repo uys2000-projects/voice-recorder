@@ -5,10 +5,18 @@ module.exports = {
     extend: {
       colors: {
         bg: "#000000", //siyah
-        text: "#f44336",
-        t2: "#FF0080", //pembe
-        t3: "#f44336", //Turuncu
-        t4: "wheat", //wheat,
+
+        t0: "#f44336",
+        i0: "#FF0080", 
+        r0: "wheat", 
+
+        t1: "#d51",
+        i1: "purple", 
+        r1: "#999", 
+
+        t2: "#F430E1",
+        i2: "blue", 
+        r2: "#fff", 
       },
     },
   },

@@ -1,12 +1,14 @@
 <template>
   <TransitionGroup :name="mainStore.getDirection" tag="div">
-    <div class="page" v-if="page=='records'" key="records">
+    <div class="page" :class="{'text-t0':mainStore.t==0,'text-t1':mainStore.t==1,'text-t2':mainStore.t==2,}" v-if="page=='records'"
+      key="records">
       <records-view />
     </div>
-    <div class="page" v-if="page=='home'" key="home">
+    <div class="page" :class="{'text-t0':mainStore.t==0,'text-t1':mainStore.t==1,'text-t2':mainStore.t==2,}" v-if="page=='home'" key="home">
       <home-view />
     </div>
-    <div class="page" v-if="page=='settings'" key="settings">
+    <div class="page" :class="{'text-t0':mainStore.t==0,'text-t1':mainStore.t==1,'text-t2':mainStore.t==2,}" v-if="page=='settings'"
+      key="settings">
       <settings-view />
     </div>
   </TransitionGroup>

@@ -1,8 +1,8 @@
 <template>
   <div class="t h-full w-full " :class="{'w-0':isActiveAll,'h-0':isActiveAll, 'opacity-0':isActiveAll}">
     <template v-for="i in 13" :key="i">
-      <voice-bar v-if="i%4 == 1" h="h-[2vw]" w="w-[1vw]" bg="bg-t3" :isOdd="isOdd" />
-      <voice-bar v-else-if="i%4 == 3" h="h-[2vw]" w="w-[1vw]" bg="bg-t3" :isOdd="isEven" />
+      <voice-bar v-if="i%4 == 1" h="h-[2vw]" w="w-[1vw]" :isOdd="isOdd" />
+      <voice-bar v-else-if="i%4 == 3" h="h-[2vw]" w="w-[1vw]" :isOdd="isEven" />
       <div v-else class="w-[1vw] inline-block" />
     </template>
   </div>

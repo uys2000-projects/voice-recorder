@@ -1,13 +1,13 @@
 <template>
   <!--Main Page-->
-  <div class="w-scree h-screen text-center flex flex-col">
+  <div class="w-scree h-screen text-center flex flex-col p-5">
     <div class="flex-grow">
       <upper-part />
     </div>
     <div class="flex-grow">
       <middle-part />
     </div>
-    <div class="flex-grow-0">
+    <div class="flex-grow-0 pb-[60px]">
       <bottom-part />
     </div>
   </div>

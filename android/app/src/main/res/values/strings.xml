@@ -4,4 +4,6 @@
     <string name="title_activity_main">Voice Recorder</string>
     <string name="package_name">com.siliente.voiceRecorder</string>
     <string name="custom_url_scheme">com.siliente.voiceRecorder</string>
+    <string name="admob_app_id">ca-app-pub-6530204715466484~1360894225</string>
+
 </resources>

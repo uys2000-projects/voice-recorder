@@ -45,9 +45,9 @@ export const writeFile = function (path, filename, ext, data) {
     recursive: true,
   }).then((result) => r(["writeFile", result], result.uri));
 };
-export const deleteFile = function (path, filename, ext) {
+export const deleteFile = function (path, filename) {
   return Filesystem.deleteFile({
-    path: `${path}/${filename}.${ext}`,
+    path: `${path}/${filename}`,
     directory: Directory.External,
   });
 };

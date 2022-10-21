@@ -1,17 +1,20 @@
 <template>
   <div @click="clickEvent" class="t h-full w-full flex absolute justify-center"
-    :class="{'w-0':!isActiveAll,'h-0':!isActiveAll, 'opacity-0':!isActiveAll}">
-    <div class=" border-l-text inline-block" :class="{'play-btn':!isPlaying, 'stop-btn':isPlaying}" />
+    :class="{'w-0 h-0 opacity-0':!isActiveAll}">
+    <div class="  inline-block" :class="{'play-btn':!isPlaying, 'stop-btn':isPlaying, 
+    'border-l-t0':mainStore.t==0, 'border-l-t1':mainStore.t==1,'border-l-t2':mainStore.t==2}" />
   </div>
 </template>
 <script>
 import { useRecordStore } from '@/store/record'
 import { useTimerStore } from '@/store/timer'
+import { useMainStore } from '@/store/main'
 export default {
   data() {
     return {
       recordStore: useRecordStore(),
       timerStore: useTimerStore(),
+      mainStore: useMainStore(),
       isPlaying: false,
       player: null,
       times: []

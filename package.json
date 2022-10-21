@@ -8,11 +8,15 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@capacitor-community/admob": "^4.0.0-1",
     "@capacitor-community/filesystem": "https://github.com/digaus/capacitor-community-filesystem",
     "@capacitor/android": "^4.3.0",
+    "@capacitor/app": "^4.0.1",
+    "@capacitor/assets": "^1.0.14",
     "@capacitor/cli": "^4.3.0",
     "@capacitor/core": "^4.3.0",
     "@capacitor/filesystem": "^4.1.2",
+    "@capacitor/share": "^4.0.1",
     "capacitor-voice-recorder": "^4.0.0",
     "core-js": "^3.8.3",
     "pinia": "^2.0.23",

@@ -1,7 +1,8 @@
 <template>
   <div class="relative flex">
     <page-button @click="toSettings">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="fill-t3 w-full h-full">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-full h-full"
+        :class="{'fill-i0':mainStore.t==0,'fill-i1':mainStore.t==1,'fill-i2':mainStore.t==2}">
         <path d="M0 0h24v24H0z" fill="none" />
         <path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z" />
       </svg>
@@ -9,7 +10,7 @@
     <div class="flex-grow"></div>
     <page-button @click="toRecords">
       <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24"
-        class="fill-t3 w-full h-full">
+        class="w-full h-full" :class="{'fill-i0':mainStore.t==0,'fill-i1':mainStore.t==1,'fill-i2':mainStore.t==2}">
         <g>
           <path d="M0,0h24v24H0V0z" fill="none" />
           <path
