@@ -25,10 +25,11 @@
   </div>
 </template>
 <script>
-import { deleteFile, readdir } from "@/services/fileSystem";
+import { deleteFile, readdir } from "@/services/capacitor/fileSystem";
 import { Share } from "@capacitor/share"
 import { useMainStore } from '@/store/main';
 import { useRecordsStore } from '@/store/records';
+import { logRecordShare } from "@/services/analytics";
 export default {
   props: ["record"],
   data() {
@@ -45,6 +46,7 @@ export default {
         url: this.record.uri,
         dialogTitle: "Share Your Record Via"
       })
+      logRecordShare()
     },
     deleteButton() {
       deleteFile(this.mainStore.location, this.record.name).then(() => {

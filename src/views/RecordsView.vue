@@ -16,7 +16,7 @@
   </div>
 </template>
 <script>
-import { readdir } from '@/services/fileSystem'
+import { readdir } from '@/services/capacitor/fileSystem'
 import { useMainStore } from '@/store/main'
 import { useRecordsStore } from '@/store/records'
 import RecordBar from "@/components/RecordsView/recordBar.vue"

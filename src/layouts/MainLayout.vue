@@ -1,14 +1,15 @@
 <template>
   <TransitionGroup :name="mainStore.getDirection" tag="div">
-    <div class="page" :class="{'text-t0':mainStore.t==0,'text-t1':mainStore.t==1,'text-t2':mainStore.t==2,}" v-if="page=='records'"
-      key="records">
+    <div class="page" :class="{'text-t0':mainStore.t==0,'text-t1':mainStore.t==1,'text-t2':mainStore.t==2,}"
+      v-if="page=='records'" key="records">
       <records-view />
     </div>
-    <div class="page" :class="{'text-t0':mainStore.t==0,'text-t1':mainStore.t==1,'text-t2':mainStore.t==2,}" v-if="page=='home'" key="home">
+    <div class="page" :class="{'text-t0':mainStore.t==0,'text-t1':mainStore.t==1,'text-t2':mainStore.t==2,}"
+      v-if="page=='home'" key="home">
       <home-view />
     </div>
-    <div class="page" :class="{'text-t0':mainStore.t==0,'text-t1':mainStore.t==1,'text-t2':mainStore.t==2,}" v-if="page=='settings'"
-      key="settings">
+    <div class="page" :class="{'text-t0':mainStore.t==0,'text-t1':mainStore.t==1,'text-t2':mainStore.t==2,}"
+      v-if="page=='settings'" key="settings">
       <settings-view />
     </div>
   </TransitionGroup>
@@ -18,6 +19,8 @@ import HomeView from "@/views/HomeView.vue"
 import SettingsView from "@/views/SettingsView.vue"
 import RecordsView from "@/views/RecordsView.vue"
 import { useMainStore } from '@/store/main'
+import { logScreeView } from "@/services/analytics"
+import { getValue, setValue } from "@/services/capacitor/preferences"
 export default {
   components: {
     HomeView,
@@ -34,6 +37,14 @@ export default {
       if (["home", "settings", "records"].find(val => val == this.$route.params.page)) return this.$route.params.page
       else return "home"
     },
+  }, mounted() {
+    logScreeView(this.page, "MainScreen")
+    getValue("theme").then(({ value }) => value ? this.mainStore.t = parseInt(value) : setValue("theme", 0))
+  },
+  watch: {
+    page() {
+      logScreeView(this.page, "MainScreen")
+    }
   }
 }
 </script>

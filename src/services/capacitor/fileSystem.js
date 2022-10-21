@@ -1,5 +1,5 @@
 import { Capacitor } from "@capacitor/core";
-import { r } from "./debugger";
+import { r } from "../debugger";
 
 import { Directory, Filesystem as MainFilesystem } from "@capacitor/filesystem";
 import { Filesystem as ElectronFilesystem } from "@capacitor-community/filesystem";

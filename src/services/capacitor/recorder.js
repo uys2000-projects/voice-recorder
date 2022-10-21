@@ -1,5 +1,5 @@
 import { VoiceRecorder } from "capacitor-voice-recorder";
-import { r } from "./debugger";
+import { r } from "../debugger";
 
 export const requestAudioRecordingPermission = function () {
   return VoiceRecorder.requestAudioRecordingPermission().then((result) =>

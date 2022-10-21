@@ -13,12 +13,27 @@
     <div class="h-full w-full flex-grow overflow-auto">
       <div class="flex">
         <setting-button>
-          <a href="https://bensenbizonlar.tumblr.com/">My Tumblr</a>
+          <a href="https://mehmetuysal.tech/">My Web Page</a>
+        </setting-button>
+      </div>
+      <div class="flex">
+        <setting-button>
+          <a href="https://github.com/uys2000">My Gthub Page</a>
+        </setting-button>
+      </div>
+      <div class="flex">
+        <setting-button>
+          <a href="https://github.com/uys2000-projects/voice-recorder">Project Repository</a>
+        </setting-button>
+      </div>
+      <div class="flex">
+        <setting-button>
+          <a href="https://www.buymeacoffee.com/uys2000">Buy Me a Coffe</a>
         </setting-button>
       </div>
       <div class="flex" @click="changeTheme">
         <setting-button>
-          Change Thema
+          Change Theme
         </setting-button>
       </div>
 
@@ -29,6 +44,8 @@
 import { useMainStore } from '@/store/main'
 import { App as CapacitorApp } from "@capacitor/app";
 import SettingButton from '@/components/SettingsView/SettingButton.vue';
+import { logThemeChange } from '@/services/analytics';
+import { setValue } from '@/services/capacitor/preferences';
 export default {
   data() {
     return {
@@ -42,7 +59,9 @@ export default {
     },
     changeTheme: function () {
       this.mainStore.t += 1
-      if (this.mainStore.t == 3) this.mainStore.t = 0
+      if (this.mainStore.t >= 3) this.mainStore.t = 0
+      logThemeChange(`${this.mainStore.t}`)
+      setValue("theme", this.mainStore.t)
     }
   },
   mounted() {

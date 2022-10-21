@@ -2,10 +2,10 @@
   <router-view />
 </template>
 <script>
-import { adMobBanner, adMobInitialize } from './services/addmob';
+//import { adMobBanner, adMobInitialize } from './services/capacitor/addmob';
 export default {
   mounted() {
-    adMobInitialize().then(() => adMobBanner())
+    //adMobInitialize().then(() => adMobBanner())
   },
 }
 </script>

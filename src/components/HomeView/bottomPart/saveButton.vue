@@ -12,9 +12,10 @@
 </template>
 <script>
 import { useRecordStore } from '@/store/record'
-import { checkPermissions, requestPermissions, writeFile } from "@/services/fileSystem"
+import { checkPermissions, requestPermissions, writeFile } from "@/services/capacitor/fileSystem"
 import { useTimerStore } from '@/store/timer'
 import { useMainStore } from '@/store/main'
+import { logRecordSaved } from '@/services/analytics'
 export default {
   data() {
     return {
@@ -31,12 +32,11 @@ export default {
       return mimeType.split("/")[1].split(";")[0]
     },
     writeFile: function () {
-
       const [mimeType, base64Sound] = this.recordStore.getRecordData
       writeFile(this.mainStore.location, this.getFileName(), this.getExt(mimeType), base64Sound)
         .then(res => this.saved(res))
         .catch(err => console.log(err))
-
+      logRecordSaved()
     },
     saved: function (res) {
       console.log(res)

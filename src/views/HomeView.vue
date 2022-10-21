@@ -22,7 +22,7 @@ import { useTimerStore } from "@/store/timer"
 import { useMainStore } from '@/store/main'
 import { useRecordStore } from '@/store/record'
 
-import { hasAudioRecordingPermission, requestAudioRecordingPermission, startRecording, stopRecording } from "@/services/recorder"
+import { hasAudioRecordingPermission, requestAudioRecordingPermission, startRecording, stopRecording } from "@/services/capacitor/recorder"
 export default {
   components: {
     MiddlePart,
