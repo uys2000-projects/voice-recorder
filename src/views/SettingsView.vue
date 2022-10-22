@@ -36,6 +36,11 @@
           Change Theme
         </setting-button>
       </div>
+      <div class="flex" @click="dataSend">
+        <setting-button>
+          {{ mainStore.d? "Apps Data Sharing" : "Apps Data Not Sharing"}}
+        </setting-button>
+      </div>
 
     </div>
   </div>
@@ -60,8 +65,11 @@ export default {
     changeTheme: function () {
       this.mainStore.t += 1
       if (this.mainStore.t >= 3) this.mainStore.t = 0
-      logThemeChange(`${this.mainStore.t}`)
+      logThemeChange(this.mainStore.d, `${this.mainStore.t}`)
       setValue("theme", this.mainStore.t)
+    },
+    dataSend: function () {
+      this.mainStore.d = !this.mainStore.d
     }
   },
   mounted() {

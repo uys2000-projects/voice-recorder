@@ -6,6 +6,7 @@ export const useMainStore = defineStore("main", {
     direction: false,
     location: "Records",
     t: 0,
+    d: true,
   }),
   actions: {
     setActive() {

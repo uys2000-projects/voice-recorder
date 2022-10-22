@@ -36,7 +36,7 @@ export default {
       writeFile(this.mainStore.location, this.getFileName(), this.getExt(mimeType), base64Sound)
         .then(res => this.saved(res))
         .catch(err => console.log(err))
-      logRecordSaved()
+      logRecordSaved(this.mainStore.d)
     },
     saved: function (res) {
       console.log(res)

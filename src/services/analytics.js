@@ -8,43 +8,43 @@ import {
   logRecordSavedFire,
 } from "./firebase/analytics";
 
-export const logScreeView = function (screenName, screenClass) {
+export const logScreeView = function (d, screenName, screenClass) {
   r("logScreeView");
   return getCurrentNetworkStatus().then((result) => {
     console.log("---------------", result);
-    result
+    result & d
       ? r("logScreeViewFire", logScreeViewFire(screenName, screenClass))
       : r("logScreeViewFire", false);
   });
 };
-export const logWebPageRedirect = function () {
+export const logWebPageRedirect = function (d) {
   r("logWebPageRedirect");
   return getCurrentNetworkStatus().then((result) =>
-    result.connected
+    result & d
       ? r("logWebPageRedirectFire", logWebPageRedirectFire())
       : r("logWebPageRedirectFire", false)
   );
 };
-export const logRecordSaved = function () {
+export const logRecordSaved = function (d) {
   r("logRecordSaved");
   return getCurrentNetworkStatus().then((result) =>
-    result.connected
+    result & d
       ? r("logRecordSavedFire", logRecordSavedFire())
       : r("logRecordSavedFire", false)
   );
 };
-export const logRecordShare = function () {
+export const logRecordShare = function (d) {
   r("logRecordShare");
   return getCurrentNetworkStatus().then((result) =>
-    result.connected
+    result & d
       ? r("logRecordShareFire", logRecordShareFire())
       : r("logRecordShareFire", false)
   );
 };
-export const logThemeChange = function (themeCode) {
+export const logThemeChange = function (d, themeCode) {
   r("logThemeChange");
   return getCurrentNetworkStatus().then((result) =>
-    result.connected
+    result & d
       ? r("logThemeChangeFire", logThemeChangeFire(themeCode))
       : r("logThemeChangeFire", false)
   );

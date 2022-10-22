@@ -46,7 +46,7 @@ export default {
         url: this.record.uri,
         dialogTitle: "Share Your Record Via"
       })
-      logRecordShare()
+      logRecordShare(this.mainStore.d)
     },
     deleteButton() {
       deleteFile(this.mainStore.location, this.record.name).then(() => {

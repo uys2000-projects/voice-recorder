@@ -38,7 +38,7 @@ export default {
       else return "home"
     },
   }, mounted() {
-    logScreeView(this.page, "MainScreen")
+    logScreeView(this.mainStore.d, this.page, "MainScreen")
     getValue("theme").then(({ value }) => value ? this.mainStore.t = parseInt(value) : setValue("theme", 0))
   },
   watch: {
