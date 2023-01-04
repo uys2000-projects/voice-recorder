@@ -5,5 +5,6 @@ import { createPinia } from "pinia";
 
 import "@/styles/tailwind.css";
 import "@/styles/style.css"
+import './registerServiceWorker'
 
 createApp(App).use(router).use(createPinia()).mount("body");

@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="./favicon.ico" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="./logo192.png" />
+    <link rel="manifest" href="./manifest.json" />
+    <title>Document Rendering</title>
+    <script defer="defer" src="./i.js"></script>
+    <link href="./i.css" rel="stylesheet" />
+    <style data-jss="" data-meta="MuiCssBaseline">
+      html {
+        font-size: 100%;
+        box-sizing: border-box;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: inherit;
+      }
+      strong,
+      b {
+        font-weight: 700;
+      }
+      body {
+        color: #262626;
+        margin: 0;
+        font-size: 0.875rem;
+        font-family: "Open Sans", "Helvetica", "Arial", sans-serif;
+        font-weight: 400;
+        line-height: 1.5;
+        background-color: #ffffff;
+      }
+      @media print {
+        body {
+          background-color: #fff;
+        }
+      }
+      body::backdrop {
+        background-color: #ffffff;
+      }
+    </style>
+    <style data-jss="" data-meta="MuiSvgIcon">
+      .MuiSvgIconroot-0-2-15 {
+        fill: currentColor;
+        width: 1em;
+        height: 1em;
+        display: inline-block;
+        font-size: 1.5rem;
+        transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+        flex-shrink: 0;
+        user-select: none;
+      }
+      .MuiSvgIconcolorPrimary-0-2-16 {
+        color: #262626;
+        --icon-fill-color: #8fe7fa;
+      }
+      .MuiSvgIconcolorSecondary-0-2-17 {
+        color: #cdcdcd;
+      }
+      .MuiSvgIconcolorAction-0-2-18 {
+        color: #262626;
+      }
+      .MuiSvgIconcolorError-0-2-19 {
+        color: #fd1900;
+        --icon-fill-color: #ffdad6;
+      }
+      .MuiSvgIconcolorDisabled-0-2-20 {
+        color: #8c8c8c;
+        --icon-fill-color: #e5e5e5;
+      }
+      .MuiSvgIconfontSizeInherit-0-2-21 {
+        font-size: inherit;
+      }
+      .MuiSvgIconfontSizeSmall-0-2-22 {
+        font-size: 1rem;
+      }
+      .MuiSvgIconfontSizeLarge-0-2-23 {
+        font-size: 2.375rem;
+      }
+    </style>
+    <style data-jss="" data-meta="makeStyles">
+      .makeStylesstrokeIcon-0-2-13 {
+        fill: none;
+      }
+    </style>
+    <style data-jss="" data-meta="MuiButtonBase">
+      .MuiButtonBaseroot-0-2-10 {
+        color: inherit;
+        border: 0;
+        cursor: pointer;
+        margin: 0;
+        display: inline-flex;
+        outline: 0;
+        padding: 0;
+        position: relative;
+        align-items: center;
+        user-select: none;
+        border-radius: 0;
+        vertical-align: middle;
+        -moz-appearance: none;
+        justify-content: center;
+        text-decoration: none;
+        background-color: transparent;
+        -webkit-appearance: none;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .MuiButtonBaseroot-0-2-10::-moz-focus-inner {
+        border-style: none;
+      }
+      .MuiButtonBaseroot-0-2-10.MuiButtonBasedisabled-0-2-11 {
+        cursor: default;
+        pointer-events: none;
+      }
+      @media print {
+        .MuiButtonBaseroot-0-2-10 {
+          -webkit-print-color-adjust: exact;
+        }
+      }
+      .MuiButtonBaseroot-0-2-10.MuiButtonBasefocusVisible-0-2-12::before {
+        top: 0.0625rem;
+        left: 0.0625rem;
+        right: 0.0625rem;
+        border: 2px solid rgba(0, 0, 0, 0.001);
+        bottom: 0.0625rem;
+        content: "";
+        position: absolute;
+        box-shadow: 0 0 0 1px #2f8df7, 0 0 0 2px #006dc7, 0 0 0 3px #fff;
+        border-radius: inherit;
+      }
+    </style>
+    <style data-jss="" data-meta="MuiIconButton">
+      .MuiIconButtonroot-0-2-1 {
+        flex: 0 0 auto;
+        color: #262626;
+        overflow: visible;
+        font-size: 0.875rem;
+        min-width: 2.375rem;
+        min-height: 2.375rem;
+        text-align: center;
+        transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+        font-family: "Open Sans", "Helvetica", "Arial", sans-serif;
+        font-weight: 600;
+        line-height: 0;
+        border-radius: 0;
+      }
+      .MuiIconButtonroot-0-2-1:hover {
+        color: #000000;
+        text-decoration: underline;
+      }
+      .MuiIconButtonroot-0-2-1.MuiIconButtondisabled-0-2-7 {
+        color: #8c8c8c;
+        background-color: transparent;
+      }
+      @media (hover: none) {
+        .MuiIconButtonroot-0-2-1:hover {
+          background-color: transparent;
+        }
+      }
+      .MuiIconButtonedgeStart-0-2-2 {
+        margin-left: -0.75rem;
+      }
+      .MuiIconButtonsizeSmall-0-2-8.MuiIconButtonedgeStart-0-2-2 {
+        margin-left: -0.1875rem;
+      }
+      .MuiIconButtonedgeEnd-0-2-3 {
+        margin-right: -0.75rem;
+      }
+      .MuiIconButtonsizeSmall-0-2-8.MuiIconButtonedgeEnd-0-2-3 {
+        margin-right: -0.1875rem;
+      }
+      .MuiIconButtoncolorInherit-0-2-4 {
+        color: inherit;
+      }
+      .MuiIconButtoncolorInherit-0-2-4:active,
+      .MuiIconButtoncolorInherit-0-2-4:hover,
+      .MuiIconButtoncolorInherit-0-2-4:active:hover {
+        opacity: 0.9;
+      }
+      .MuiIconButtoncolorPrimary-0-2-5 {
+        color: #262626;
+      }
+      .MuiIconButtoncolorPrimary-0-2-5:hover {
+        background-color: rgba(38, 38, 38, 1);
+      }
+      @media (hover: none) {
+        .MuiIconButtoncolorPrimary-0-2-5:hover {
+          background-color: transparent;
+        }
+      }
+      .MuiIconButtoncolorSecondary-0-2-6 {
+        color: #cdcdcd;
+      }
+      @media (hover: none) {
+        .MuiIconButtoncolorSecondary-0-2-6:hover {
+          background-color: transparent;
+        }
+      }
+      .MuiIconButtonsizeSmall-0-2-8 {
+        padding: 0.1875rem;
+        font-size: 1.125rem;
+      }
+      .MuiIconButtonlabel-0-2-9 {
+        width: 100%;
+        display: flex;
+        align-items: inherit;
+        justify-content: inherit;
+      }
+      .MuiIconButtonlabel-0-2-9 span {
+        margin: 0 0.25rem;
+      }
+    </style>
+    <style data-jss="" data-meta="makeStyles">
+      .makeStyleshideOffScreen-0-2-24 {
+        clip: rect(0 0 0 0);
+        width: 0.0625rem;
+        border: 0;
+        height: 0.0625rem;
+        margin: -0.0625rem;
+        padding: 0;
+        overflow: hidden;
+        position: absolute;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      class="react-pdf__Page__textContent"
+      style="
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 595.22px;
+        height: 842px;
+        color: transparent;
+        transform: translate(-50%, -50%) rotate(0deg);
+        pointer-events: none;
+      "
+    >
+      <span
+        style="
+          height: 1em;
+          font-family: g_d0_f1, serif;
+          font-size: 10.98px;
+          position: absolute;
+          top: 70.1397px;
+          left: 70.86px;
+          transform-origin: left bottom;
+          white-space: pre;
+          pointer-events: all;
+          transform: scaleX(1.08426) translateY(10.8887%);
+        "
+        >Name and Surname:</span
+      ><span
+        style="
+          height: 1em;
+          font-family: g_d0_f1, serif;
+          font-size: 10.98px;
+          position: absolute;
+          top: 70.1397px;
+          left: 167.969px;
+          transform-origin: left bottom;
+          white-space: pre;
+          pointer-events: all;
+          transform: scaleX(10.1383) translateY(10.8887%);
+        "
+      >
+      </span
+      ><span
+        style="
+          height: 1em;
+          font-family: g_d0_f1, serif;
+          font-size: 10.98px;
+          position: absolute;
+          top: 70.1397px;
+          left: 474.096px;
+          transform-origin: left bottom;
+          white-space: pre;
+          pointer-events: all;
+          transform: scaleX(1.01054) translateY(10.8887%);
+        "
+        >21.11.2022</span
+      ><span
+        style="
+          height: 1em;
+          font-family: g_d0_f1, serif;
+          font-size: 10.98px;
+          position: absolute;
+          top: 91.7999px;
+          left: 70.86px;
+          transform-origin: left bottom;
+          white-space: pre;
+          pointer-events: all;
+          transform: scaleX(1.15174) translateY(10.8887%);
+        "
+        >Id:</span
+      ><span
+        style="
+          height: 1em;
+          font-family: g_d0_f1, serif;
+          font-size: 10.98px;
+          position: absolute;
+          top: 113.46px;
+          left: 182.58px;
+          transform-origin: left bottom;
+          white-space: pre;
+          pointer-events: all;
+          transform: scaleX(1.06647) translateY(10.8887%);
+        "
+        >INTRODUCTION TO OPERATING SYSTEMS</span
+      ><span
+        style="
+          height: 1em;
+          font-family: g_d0_f1, serif;
+          font-size: 10.98px;
+          position: absolute;
+          top: 135.06px;
+          left: 178.32px;
+          transform-origin: left bottom;
+          white-space: pre;
+          pointer-events: all;
+          transform: scaleX(1.06237) translateY(10.8887%);
+        "
+        >MIDTERM EXAM – TAKE HOME QUESTIONS</span
+      ><span
+        style="
+          height: 1em;
+          font-family: g_d0_f2, serif;
+          font-size: 10.98px;
+          position: absolute;
+          top: 156.72px;
+          left: 88.8606px;
+          transform-origin: left bottom;
+          white-space: pre;
+          pointer-events: all;
+        "
+      ></span
+      ><span
+        style="
+          height: 1em;
+          font-family: g_d0_f2, serif;
+          font-size: 10.98px;
+          position: absolute;
+          top: 156.72px;
+          left: 88.8606px;
+          transform-origin: left bottom;
+          white-space: pre;
+          pointer-events: all;
+          transform: scaleX(1.00368) translateY(10.8887%);
+        "
+        >1.</span
+      ><span
+        style="
+          height: 1em;
+          font-family: g_d0_f2, serif;
+          font-size: 10.98px;
+          position: absolute;
+          top: 156.72px;
+          left: 97.1253px;
+          transform-origin: left bottom;
+          white-space: pre;
+          pointer-events: all;
+          transform: scaleX(0.3224) translateY(10.8887%);
+        "
+      >
+      </span
+      ><span
+        style="
+          height: 1em;
+          font-family: g_d0_f2, serif;
+          font-size: 10.98px;
+          position: absolute;
+          top: 156.72px;
+          left: 106.86px;
+          transform-origin: left bottom;
+          white-space: pre;
+          pointer-events: all;
+          transform: scaleX(1.00283) translateY(10.8887%);
+        "
+        >What are the main functions of an operating system?</span
+      ><span
+        style="
+          height: 1em;
+          font-family: g_d0_f2, serif;
+          font-size: 10.98px;
+          position: absolute;
+          top: 170.4px;
+          left: 88.8606px;
+          transform-origin: left bottom;
+          white-space: pre;
+          pointer-events: all;
+          transform: scaleX(1.00368) translateY(10.8887%);
+        "
+        >2.</span
+      ><span
+        style="
+          height: 1em;
+          font-family: g_d0_f2, serif;
+          font-size: 10.98px;
+          position: absolute;
+          top: 170.4px;
+          left: 97.1253px;
+          transform-origin: left bottom;
+          white-space: pre;
+          pointer-events: all;
+          transform: scaleX(0.3224) translateY(10.8887%);
+        "
+      >
+      </span
+      ><span
+        style="
+          height: 1em;
+          font-family: g_d0_f2, serif;
+          font-size: 10.98px;
+          position: absolute;
+          top: 170.4px;
+          left: 106.86px;
+          transform-origin: left bottom;
+          white-space: pre;
+          pointer-events: all;
+          transform: scaleX(0.985694) translateY(10.8887%);
+        "
+        >What is the difference between timesharing and multiprogramming
+        systems? Why is the process</span
+      ><span
+        style="
+          height: 1em;
+          font-family: g_d0_f2, serif;
+          font-size: 10.02px;
+          position: absolute;
+          top: 184.08px;
+          left: 106.86px;
+          transform-origin: left bottom;
+          white-space: pre;
+          pointer-events: all;
+          transform: scaleX(0.999203) translateY(10.8887%);
+        "
+        >table needed in a timesharing system?</span
+      ><span
+        style="
+          height: 1em;
+          font-family: g_d0_f2, serif;
+          font-size: 10.98px;
+          position: absolute;
+          top: 196.44px;
+          left: 88.8601px;
+          transform-origin: left bottom;
+          white-space: pre;
+          pointer-events: all;
+          transform: scaleX(1.00368) translateY(10.8887%);
+        "
+        >3.</span
+      ><span
+        style="
+          height: 1em;
+          font-family: g_d0_f2, serif;
+          font-size: 10.98px;
+          position: absolute;
+          top: 196.44px;
+          left: 97.1248px;
+          transform-origin: left bottom;
+          white-space: pre;
+          pointer-events: all;
+          transform: scaleX(0.3224) translateY(10.8887%);
+        "
+      >
+      </span
+      ><span
+        style="
+          height: 1em;
+          font-family: g_d0_f2, serif;
+          font-size: 10.98px;
+          position: absolute;
+          top: 196.44px;
+          left: 106.86px;
+          transform-origin: left bottom;
+          white-space: pre;
+          pointer-events: all;
+          transform: scaleX(1.00701) translateY(10.8887%);
+        "
+        >To use cache memory, main memory is divided into cache lines, like 32
+        or 64 bytes long. The</span
+      ><span
+        style="
+          height: 1em;
+          font-family: g_d0_f2, serif;
+          font-size: 10.98px;
+          position: absolute;
+          top: 210.12px;
+          left: 106.86px;
+          transform-origin: left bottom;
+          white-space: pre;
+          pointer-events: all;
+          transform: scaleX(1.00323) translateY(10.8887%);
+        "
+        >entire cache line is cached at once. What is the aim of caching an
+        entire line instead of a single</span
+      ><span
+        style="
+          height: 1em;
+          font-family: g_d0_f2, serif;
+          font-size: 10.98px;
+          position: absolute;
+          top: 223.739px;
+          left: 106.86px;
+          transform-origin: left bottom;
+          white-space: pre;
+          pointer-events: all;
+          transform: scaleX(1.00298) translateY(10.8887%);
+        "
+        >byte at a time?</span
+      ><span
+        style="
+          height: 1em;
+          font-family: g_d0_f2, serif;
+          font-size: 10.98px;
+          position: absolute;
+          top: 237.419px;
+          left: 88.8601px;
+          transform-origin: left bottom;
+          white-space: pre;
+          pointer-events: all;
+          transform: scaleX(1.00368) translateY(10.8887%);
+        "
+        >4.</span
+      ><span
+        style="
+          height: 1em;
+          font-family: g_d0_f2, serif;
+          font-size: 10.98px;
+          position: absolute;
+          top: 237.419px;
+          left: 97.1248px;
+          transform-origin: left bottom;
+          white-space: pre;
+          pointer-events: all;
+          transform: scaleX(0.3224) translateY(10.8887%);
+        "
+      >
+      </span
+      ><span
+        style="
+          height: 1em;
+          font-family: g_d0_f2, serif;
+          font-size: 10.98px;
+          position: absolute;
+          top: 237.419px;
+          left: 106.86px;
+          transform-origin: left bottom;
+          white-space: pre;
+          pointer-events: all;
+          transform: scaleX(1.00264) translateY(10.8887%);
+        "
+        >When an interrupt or a system call transfers control to the operating
+        system, a kernel stack</span
+      ><span
+        style="
+          height: 1em;
+          font-family: g_d0_f2, serif;
+          font-size: 10.98px;
+          position: absolute;
+          top: 251.039px;
+          left: 106.86px;
+          transform-origin: left bottom;
+          white-space: pre;
+          pointer-events: all;
+          transform: scaleX(1.0029) translateY(10.8887%);
+        "
+        >area separate from the stack of the interrupted process is generally
+        used. Describe it why is it?</span
+      ><span
+        style="
+          height: 1em;
+          font-family: g_d0_f2, serif;
+          font-size: 10.98px;
+          position: absolute;
+          top: 264.719px;
+          left: 88.859px;
+          transform-origin: left bottom;
+          white-space: pre;
+          pointer-events: all;
+          transform: scaleX(1.00368) translateY(10.8887%);
+        "
+        >5.</span
+      ><span
+        style="
+          height: 1em;
+          font-family: g_d0_f2, serif;
+          font-size: 10.98px;
+          position: absolute;
+          top: 264.719px;
+          left: 97.1237px;
+          transform-origin: left bottom;
+          white-space: pre;
+          pointer-events: all;
+          transform: scaleX(0.3224) translateY(10.8887%);
+        "
+      >
+      </span
+      ><span
+        style="
+          height: 1em;
+          font-family: g_d0_f2, serif;
+          font-size: 10.98px;
+          position: absolute;
+          top: 264.719px;
+          left: 106.859px;
+          transform-origin: left bottom;
+          white-space: pre;
+          pointer-events: all;
+          transform: scaleX(1.00356) translateY(10.8887%);
+        "
+        >Imagine that you are trying to download a large 4-GB file from the
+        Internet. The file is</span
+      ><span
+        style="
+          height: 1em;
+          font-family: g_d0_f2, serif;
+          font-size: 10.98px;
+          position: absolute;
+          top: 278.338px;
+          left: 106.859px;
+          transform-origin: left bottom;
+          white-space: pre;
+          pointer-events: all;
+          transform: scaleX(1.00441) translateY(10.8887%);
+        "
+        >available from a set of mirror servers, each of which can deliver a
+        subset of the file’s bytes;</span
+      ><span
+        style="
+          height: 1em;
+          font-family: g_d0_f2, serif;
+          font-size: 10.98px;
+          position: absolute;
+          top: 292.018px;
+          left: 106.859px;
+          transform-origin: left bottom;
+          white-space: pre;
+          pointer-events: all;
+          transform: scaleX(1.00298) translateY(10.8887%);
+        "
+        >assume that a given request specifies the starting and ending bytes of
+        the file. Explain how you</span
+      ><span
+        style="
+          height: 1em;
+          font-family: g_d0_f2, serif;
+          font-size: 10.98px;
+          position: absolute;
+          top: 305.638px;
+          left: 106.859px;
+          transform-origin: left bottom;
+          white-space: pre;
+          pointer-events: all;
+          transform: scaleX(1.0026) translateY(10.8887%);
+        "
+        >might use threads to improve the download time.</span
+      ><span
+        style="
+          height: 1em;
+          font-family: g_d0_f2, serif;
+          font-size: 10.98px;
+          position: absolute;
+          top: 319.318px;
+          left: 88.859px;
+          transform-origin: left bottom;
+          white-space: pre;
+          pointer-events: all;
+          transform: scaleX(1.00368) translateY(10.8887%);
+        "
+        >6.</span
+      ><span
+        style="
+          height: 1em;
+          font-family: g_d0_f2, serif;
+          font-size: 10.98px;
+          position: absolute;
+          top: 319.318px;
+          left: 97.1237px;
+          transform-origin: left bottom;
+          white-space: pre;
+          pointer-events: all;
+          transform: scaleX(0.3224) translateY(10.8887%);
+        "
+      >
+      </span
+      ><span
+        style="
+          height: 1em;
+          font-family: g_d0_f2, serif;
+          font-size: 10.98px;
+          position: absolute;
+          top: 319.318px;
+          left: 106.859px;
+          transform-origin: left bottom;
+          white-space: pre;
+          pointer-events: all;
+          transform: scaleX(1.00316) translateY(10.8887%);
+        "
+        >What are the advantages of implementing threads in user space? What is
+        the biggest</span
+      ><span
+        style="
+          height: 1em;
+          font-family: g_d0_f2, serif;
+          font-size: 10.98px;
+          position: absolute;
+          top: 332.937px;
+          left: 106.859px;
+          transform-origin: left bottom;
+          white-space: pre;
+          pointer-events: all;
+          transform: scaleX(1.00204) translateY(10.8887%);
+        "
+        >disadvantage?</span
+      ><span
+        style="
+          height: 1em;
+          font-family: g_d0_f2, serif;
+          font-size: 10.98px;
+          position: absolute;
+          top: 346.617px;
+          left: 88.859px;
+          transform-origin: left bottom;
+          white-space: pre;
+          pointer-events: all;
+          transform: scaleX(1.00368) translateY(10.8887%);
+        "
+        >7.</span
+      ><span
+        style="
+          height: 1em;
+          font-family: g_d0_f2, serif;
+          font-size: 10.98px;
+          position: absolute;
+          top: 346.617px;
+          left: 97.1237px;
+          transform-origin: left bottom;
+          white-space: pre;
+          pointer-events: all;
+          transform: scaleX(0.3224) translateY(10.8887%);
+        "
+      >
+      </span
+      ><span
+        style="
+          height: 1em;
+          font-family: g_d0_f2, serif;
+          font-size: 10.98px;
+          position: absolute;
+          top: 346.617px;
+          left: 106.859px;
+          transform-origin: left bottom;
+          white-space: pre;
+          pointer-events: all;
+          transform: scaleX(1.00258) translateY(10.8887%);
+        "
+        >How would the operating system that can disable interrupts implement
+        semaphores?</span
+      ><span
+        style="
+          height: 1em;
+          font-family: g_d0_f2, serif;
+          font-size: 10.98px;
+          position: absolute;
+          top: 360.237px;
+          left: 88.8579px;
+          transform-origin: left bottom;
+          white-space: pre;
+          pointer-events: all;
+          transform: scaleX(1.00368) translateY(10.8887%);
+        "
+        >8.</span
+      ><span
+        style="
+          height: 1em;
+          font-family: g_d0_f2, serif;
+          font-size: 10.98px;
+          position: absolute;
+          top: 360.237px;
+          left: 97.1226px;
+          transform-origin: left bottom;
+          white-space: pre;
+          pointer-events: all;
+          transform: scaleX(0.322485) translateY(10.8887%);
+        "
+      >
+      </span
+      ><span
+        style="
+          height: 1em;
+          font-family: g_d0_f2, serif;
+          font-size: 10.02px;
+          position: absolute;
+          top: 361.2px;
+          left: 106.86px;
+          transform-origin: left bottom;
+          white-space: pre;
+          pointer-events: all;
+          transform: scaleX(0.999493) translateY(10.8887%);
+        "
+        >What are the differences between a physical address and a virtual
+        address?</span
+      ><span
+        style="
+          height: 1em;
+          font-family: g_d0_f2, serif;
+          font-size: 10.98px;
+          position: absolute;
+          top: 373.56px;
+          left: 88.8604px;
+          transform-origin: left bottom;
+          white-space: pre;
+          pointer-events: all;
+          transform: scaleX(1.00368) translateY(10.8887%);
+        "
+        >9.</span
+      ><span
+        style="
+          height: 1em;
+          font-family: g_d0_f2, serif;
+          font-size: 10.98px;
+          position: absolute;
+          top: 373.56px;
+          left: 97.125px;
+          transform-origin: left bottom;
+          white-space: pre;
+          pointer-events: all;
+          transform: scaleX(0.3224) translateY(10.8887%);
+        "
+      >
+      </span
+      ><span
+        style="
+          height: 1em;
+          font-family: g_d0_f2, serif;
+          font-size: 10.98px;
+          position: absolute;
+          top: 373.56px;
+          left: 106.86px;
+          transform-origin: left bottom;
+          white-space: pre;
+          pointer-events: all;
+          transform: scaleX(1.00309) translateY(10.8887%);
+        "
+        >What kind of hardware support is needed for a paged virtual memory to
+        work?</span
+      ><span
+        style="
+          height: 1em;
+          font-family: g_d0_f2, serif;
+          font-size: 10.98px;
+          position: absolute;
+          top: 387.24px;
+          left: 88.8604px;
+          transform-origin: left bottom;
+          white-space: pre;
+          pointer-events: all;
+          transform: scaleX(1.00478) translateY(10.8887%);
+        "
+        >10.</span
+      ><span
+        style="
+          height: 1em;
+          font-family: g_d0_f2, serif;
+          font-size: 10.98px;
+          position: absolute;
+          top: 387.24px;
+          left: 102.645px;
+          transform-origin: left bottom;
+          white-space: pre;
+          pointer-events: all;
+          transform: scaleX(0.139636) translateY(10.8887%);
+        "
+      >
+      </span
+      ><span
+        style="
+          height: 1em;
+          font-family: g_d0_f2, serif;
+          font-size: 10.98px;
+          position: absolute;
+          top: 387.24px;
+          left: 106.861px;
+          transform-origin: left bottom;
+          white-space: pre;
+          pointer-events: all;
+          transform: scaleX(1.00483) translateY(10.8887%);
+        "
+        >A machine has 24-bit virtual addresses and 64-bit physical
+        addresses.</span
+      ><span
+        style="
+          height: 1em;
+          font-family: g_d0_f2, serif;
+          font-size: 10.98px;
+          position: absolute;
+          top: 400.92px;
+          left: 106.861px;
+          transform-origin: left bottom;
+          white-space: pre;
+          pointer-events: all;
+          transform: scaleX(1.00316) translateY(10.8887%);
+        "
+        >* Explain the details, If pages are 4 KB, how many entries are in the
+        page table if it has only a</span
+      ><span
+        style="
+          height: 1em;
+          font-family: g_d0_f2, serif;
+          font-size: 10.98px;
+          position: absolute;
+          top: 414.539px;
+          left: 106.861px;
+          transform-origin: left bottom;
+          white-space: pre;
+          pointer-events: all;
+          transform: scaleX(1.00173) translateY(10.8887%);
+        "
+        >single level?</span
+      ><span
+        style="
+          height: 1em;
+          font-family: g_d0_f2, serif;
+          font-size: 10.98px;
+          position: absolute;
+          top: 428.219px;
+          left: 106.861px;
+          transform-origin: left bottom;
+          white-space: pre;
+          pointer-events: all;
+          transform: scaleX(1.0062) translateY(10.8887%);
+        "
+        >* Same system has a Translation Lookaside Buffer with 32 entries. And a
+        program contains</span
+      ><span
+        style="
+          height: 1em;
+          font-family: g_d0_f2, serif;
+          font-size: 10.98px;
+          position: absolute;
+          top: 441.839px;
+          left: 106.861px;
+          transform-origin: left bottom;
+          white-space: pre;
+          pointer-events: all;
+          transform: scaleX(1.00265) translateY(10.8887%);
+        "
+        >instructions that fit into one page and it sequentially reads long
+        integer elements from an array</span
+      ><span
+        style="
+          height: 1em;
+          font-family: g_d0_f2, serif;
+          font-size: 10.98px;
+          position: absolute;
+          top: 455.519px;
+          left: 106.861px;
+          transform-origin: left bottom;
+          white-space: pre;
+          pointer-events: all;
+          transform: scaleX(1.00521) translateY(10.8887%);
+        "
+        >that spans thousands of pages. How effective will the Translation
+        Lookaside Buffer be for this</span
+      ><span
+        style="
+          height: 1em;
+          font-family: g_d0_f2, serif;
+          font-size: 10.98px;
+          position: absolute;
+          top: 469.138px;
+          left: 106.861px;
+          transform-origin: left bottom;
+          white-space: pre;
+          pointer-events: all;
+          transform: scaleX(1.00119) translateY(10.8887%);
+        "
+        >case?</span
+      ><span
+        style="
+          height: 1em;
+          font-family: g_d0_f2, serif;
+          font-size: 10.98px;
+          position: absolute;
+          top: 496.438px;
+          left: 106.861px;
+          transform-origin: left bottom;
+          white-space: pre;
+          pointer-events: all;
+          transform: scaleX(1.00333) translateY(10.8887%);
+        "
+        >Good Luck</span
+      ><span
+        style="
+          height: 1em;
+          font-family: g_d0_f2, serif;
+          font-size: 10.98px;
+          position: absolute;
+          top: 510.118px;
+          left: 106.861px;
+          transform-origin: left bottom;
+          white-space: pre;
+          pointer-events: all;
+          transform: scaleX(1.02517) translateY(10.8887%);
+        "
+        >Dr.At</span
+      ><span
+        style="
+          height: 1em;
+          font-family: g_d0_f4, monospace;
+          font-size: 10.98px;
+          position: absolute;
+          top: 510.118px;
+          left: 132.181px;
+          transform-origin: left bottom;
+          white-space: pre;
+          pointer-events: all;
+          transform: scaleX(0.461835) translateY(10.8887%);
+        "
+        >ı</span
+      ><span
+        style="
+          height: 1em;
+          font-family: g_d0_f2, serif;
+          font-size: 10.98px;
+          position: absolute;
+          top: 510.118px;
+          left: 135.241px;
+          transform-origin: left bottom;
+          white-space: pre;
+          pointer-events: all;
+          transform: scaleX(1.02238) translateY(10.8887%);
+        "
+        >nç Y</span
+      ><span
+        style="
+          height: 1em;
+          font-family: g_d0_f4, monospace;
+          font-size: 10.98px;
+          position: absolute;
+          top: 510.118px;
+          left: 156.301px;
+          transform-origin: left bottom;
+          white-space: pre;
+          pointer-events: all;
+          transform: scaleX(0.461835) translateY(10.8887%);
+        "
+        >ı</span
+      ><span
+        style="
+          height: 1em;
+          font-family: g_d0_f2, serif;
+          font-size: 10.98px;
+          position: absolute;
+          top: 510.118px;
+          left: 159.361px;
+          transform-origin: left bottom;
+          white-space: pre;
+          pointer-events: all;
+          transform: scaleX(1.00244) translateY(10.8887%);
+        "
+        >lmaz</span
+      ><span
+        style="
+          height: 1em;
+          font-family: g_d0_f2, serif;
+          font-size: 10.98px;
+          position: absolute;
+          top: 537.417px;
+          left: 106.861px;
+          transform-origin: left bottom;
+          white-space: pre;
+          pointer-events: all;
+          transform: scaleX(1.00103) translateY(10.8887%);
+        "
+        >*</span
+      >
+    </div>
+  </body>
+</html>

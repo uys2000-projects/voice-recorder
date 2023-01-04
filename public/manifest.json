@@ -4,7 +4,7 @@
   "short_name": "Funo",
   "start_url": ".",
   "display": "standalone",
-  "background_color": "#fff",
+  "background_color": "#000",
   "description": "Platform for share Events.",
   "icons": [{
     "src": "images/touch/homescreen48.png",
@@ -13,6 +13,6 @@
   }],
   "related_applications": [{
     "platform": "play",
-    "url": "https://play.google.com/store/apps/details?id=cheeaun.hackerweb"
+    "url": "https://play.google.com/store/apps/details?id=<app-recorder>"
   }]
 }
